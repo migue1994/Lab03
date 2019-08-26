@@ -10,38 +10,27 @@ public class Registry {
     private ArrayList<Integer> ids = new ArrayList<Integer>();
 
     public RegisterResult registerVoter(Person p) {
-
-        // TODO Validate person and return real result.
-
-        RegisterResult result = RegisterResult.VALID;
-
-        if (p.getAge() < 0 || p.getAge() > 122)
-        {
-            result = RegisterResult.INVALID_AGE;
-            return result;
+        
+        boolean alive=p.isAlive(); 
+        int id=p.getId();
+        int age=p.getAge();
+        RegisterResult result=RegisterResult.DEAD; 
+        
+        if(alive){
+            
+                if(ids.contains(id)){
+                    result=RegisterResult.DUPLICATED;
+                }            
+                else{
+                    if(age<0 || age>188) result=RegisterResult.INVALID_AGE;
+                    else if (age<18) result=RegisterResult.UNDERAGE;
+                    else{
+                        result=RegisterResult.VALID;
+                        ids.add(id);
+                    }
+                }         
         }
+        return result;
 
-        else if(ids.contains(p.getId()))
-        {
-            result = RegisterResult.DUPLICATED;
-            return result;
-        }
-
-        else if(!p.isAlive())
-        {
-            result = RegisterResult.DEAD;
-            return result;
-        }
-
-        else if(p.getAge() < 18)
-        {
-            result = RegisterResult.UNDERAGE;
-            return result;
-        }
-        else
-        {
-            ids.add(p.getId());
-            return result;
-        }
     }
 }
