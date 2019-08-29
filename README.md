@@ -1,3 +1,7 @@
+## Integrantes:
+### Natalia Durán Vivas
+### Miguel Ángel Rivera
+----------------------------------
 # Lab03
 ## AeroDescuentos
 
