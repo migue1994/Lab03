@@ -86,6 +86,16 @@ public class TarifasTest{
     }
 
     @Test
+    public void diasMayoraVeinteEdadIgualDieciOcho()
+    {
+        tarifa = descuento.calculoTarifa(10000,25,18);
+
+        double resultado = 10000*0.85;
+
+        Assert.assertEquals(resultado, tarifa,0);
+    }
+
+    @Test
     public void diasIgualaVeinteEdadIgualSesentaYCinco()
     {
         tarifa = descuento.calculoTarifa(10000,20,65);
@@ -96,24 +106,75 @@ public class TarifasTest{
     }
 
     @Test
-    public void invalidAge(){
-        tarifa = descuento.calculoTarifa(10000,21,-40);
+    public void diasMayorVeinteEdadIgualSesentaYCinco()
+    {
+        tarifa = descuento.calculoTarifa(10000,25,65);
 
-        double resultado = 10000*0.8;
+        double resultado = 10000*0.85;
 
         Assert.assertEquals(resultado, tarifa,0);
+    }
+
+    @Test
+    public void diasIgualaVeinteEdadMenorDeDieciocho()
+    {
+        tarifa = descuento.calculoTarifa(10000,20,17);
+
+        double resultado = 10000;
+
+        Assert.assertEquals(resultado, tarifa,0);
+    }
+
+    @Test
+    public void diasIgualaVeinteEdadMayorASesentaYCinco()
+    {
+        tarifa = descuento.calculoTarifa(10000,20,67);
+
+        double resultado = 10000*0.92;
+
+        Assert.assertEquals(resultado, tarifa,0);
+    }
+
+    @Test
+    public void invalidAge(){
+        try{
+            tarifa = descuento.calculoTarifa(10000,21,-40);
+
+            double resultado = 10000*0.8;
+
+            Assert.assertTrue("Debería lanzar una excepción por edad inválida",1==0);
+        }
+        catch(Exception e){
+            Assert.assertTrue(e.getMessage(),0==0);
+        }
     }
     
 
     @Test 
-    public void diasAntelacionInvalidos()
-    {
-       
+    public void diasAntelacionInvalidos(){
+       try{
             tarifa = descuento.calculoTarifa(10000,-21,40);
 
             double resultado = 10000;
     
-            Assert.assertEquals(resultado, tarifa,0);
-        
+            Assert.assertTrue("Debería lanzar una excepción por días de antelación inválidos",1==0);
+        }
+        catch(Exception e){
+               Assert.assertTrue(e.getMessage(),0==0); 
+        }
     }
+     @Test 
+    public void tarifaBaseInvalida(){
+       try{
+            tarifa = descuento.calculoTarifa(-10000,21,40);
+
+            double resultado = 10000;
+    
+            Assert.assertTrue("Debería lanzar una excepción por tarifa base inválida",1==0);
+        }
+        catch(Exception e){
+               Assert.assertTrue(e.getMessage(),0==0); 
+        }
+    }  
+    
 }
