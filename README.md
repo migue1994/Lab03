@@ -13,7 +13,7 @@ arrojar una excepción de tipo ExcepcionParametrosInvalidos?. Agregue esto a la 
 2. En la siguiente tabla enumere un conjunto de clases de equivalencia que -según usted- creen una
 buena división del conjunto de datos de entrada de la función anterior:  
 
-![](https://github.com/migue1994/Lab03/blob/master/Captura.PNG)
+![](https://github.com/migue1994/Lab03/blob/master/tabla.png)
 
 3. Para cada clase de equivalencia, defina un caso de prueba específico, definiendo: parámetros de
 entrada y resultados esperados.  
